@@ -1,4 +1,4 @@
-#---
+﻿#---
 #layout: demo
 #title: Demo
 #permalink: /demo/
@@ -28,3 +28,4 @@
 
 <!-- <h2 id="comments">Comments</h2> -->
 {% include comments.html %}
+ 
