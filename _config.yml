@@ -7,7 +7,7 @@
 
 # Site settings
 title: yingjiusheng
-brief-intro: Back-End  Dev Engineer
+brief-intro: PHP  Dev Engineer
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://yingjiusheng.github.io" # the base hostname & protocol for your site
 
