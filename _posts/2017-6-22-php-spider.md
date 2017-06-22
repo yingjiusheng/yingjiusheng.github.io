@@ -2,7 +2,7 @@
 layout: post
 title:  "curl伪登录51Job网站"
 categories: PHP
-tags:  PHP,Spider
+tags:  PHP Spider
 ---
 
 * content
