@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "微信公众平台开发"
+title:  "微信公众平台开发（一）"
 categories: PHP
 tags:  PHP Weixin
 ---
@@ -142,7 +142,7 @@ tags:  PHP Weixin
 
 
 
-## 接受发送简单文本消息
+## 接收发送简单文本消息
 
 ```
 if(strtolower($postObj->MsgType) == 'text'){
@@ -177,6 +177,57 @@ if(strtolower($postObj->MsgType) == 'text'){
                 $time     = time();
                 $msgType  = 'text';
                 echo sprintf($template, $toUser, $fromUser, $time, $msgType, $content);
+        }
+```
+
+## 回复单多图文
+
+```
+        //用户发送tuwen1关键字的时候，回复一个单图文
+        if( strtolower($postObj->MsgType) == 'text' && trim($postObj->Content)=='tuwen2' ){
+            $toUser = $postObj->FromUserName;
+            $fromUser = $postObj->ToUserName;
+            $arr = array(
+                array(
+                    'title'=>'imooc',
+                    'description'=>"imooc is very cool",
+                    'picUrl'=>'http://www.imooc.com/static/img/common/logo.png',
+                    'url'=>'http://www.imooc.com',
+                ),
+                array(
+                    'title'=>'hao123',
+                    'description'=>"hao123 is very cool",
+                    'picUrl'=>'https://www.baidu.com/img/bdlogo.png',
+                    'url'=>'http://www.hao123.com',
+                ),
+                array(
+                    'title'=>'qq',
+                    'description'=>"qq is very cool",
+                    'picUrl'=>'http://www.imooc.com/static/img/common/logo.png',
+                    'url'=>'http://www.qq.com',
+                ),
+            );
+            $template = "<xml>
+						<ToUserName><![CDATA[%s]]></ToUserName>
+						<FromUserName><![CDATA[%s]]></FromUserName>
+						<CreateTime>%s</CreateTime>
+						<MsgType><![CDATA[%s]]></MsgType>
+						<ArticleCount>".count($arr)."</ArticleCount>
+						<Articles>";
+            foreach($arr as $k=>$v){
+                $template .="<item>
+							<Title><![CDATA[".$v['title']."]]></Title>
+							<Description><![CDATA[".$v['description']."]]></Description>
+							<PicUrl><![CDATA[".$v['picUrl']."]]></PicUrl>
+							<Url><![CDATA[".$v['url']."]]></Url>
+							</item>";
+            }
+
+            $template .="</Articles>
+						</xml> ";
+            echo sprintf($template, $toUser, $fromUser, time(), 'news');
+
+            //注意：进行多图文发送时，子图文个数不能超过10个
         }
 ```
 
