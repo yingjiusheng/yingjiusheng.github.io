@@ -188,3 +188,5 @@ class WeixinController extends ScriptController
     }
 }
 ```
+
+[wechat-php-sdk类地址](https://github.com/dodgepudding/wechat-php-sdk)
