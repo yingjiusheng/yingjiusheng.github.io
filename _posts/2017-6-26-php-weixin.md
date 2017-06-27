@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "微信公众平台开发（二）"
-categories: PHP
+categories: PHP 微信
 tags:  PHP Weixin
 ---
 
