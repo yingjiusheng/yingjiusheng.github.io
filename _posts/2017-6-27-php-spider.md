@@ -63,8 +63,8 @@ class SpiderController extends ScriptController{
         curl_setopt ( $ch, CURLOPT_RETURNTRANSFER, 1 ); // 结果数据只返回、不输出
         curl_setopt ( $ch, CURLOPT_ENCODING, 'gzip, deflate, sdch');//header中“Accept-Encoding: ”部分的内容，支持的编码格式为："identity"，"deflate"，"gzip"。如果设置为空字符串，则表示支持所有的编码格式
         curl_setopt ( $ch, CURLOPT_TIMEOUT, 50 ); // 设置响应秒数
-        curl_setopt($this->curlHandle, CURLOPT_POST, true);
-        curl_setopt($this->curlHandle, CURLOPT_POSTFIELDS, $data);
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
         if(!empty($cookie)){
             curl_setopt($ch,CURLOPT_COOKIE ,$cookie);
         }
