@@ -53,6 +53,33 @@ class SpiderController extends ScriptController{
     }
 
     /**
+     * post获取Url内容
+     * User: jsying@iflytek.com
+     */
+    private function postHtml($url,$data,$cookie=''){
+        $data = is_array($data) ? http_build_query($data, null, "&") : $data;
+        $ch = curl_init ();
+        curl_setopt ( $ch, CURLOPT_URL, $url ); // 获取传输URL
+        curl_setopt ( $ch, CURLOPT_RETURNTRANSFER, 1 ); // 结果数据只返回、不输出
+        curl_setopt ( $ch, CURLOPT_ENCODING, 'gzip, deflate, sdch');//header中“Accept-Encoding: ”部分的内容，支持的编码格式为："identity"，"deflate"，"gzip"。如果设置为空字符串，则表示支持所有的编码格式
+        curl_setopt ( $ch, CURLOPT_TIMEOUT, 50 ); // 设置响应秒数
+        curl_setopt($this->curlHandle, CURLOPT_POST, true);
+        curl_setopt($this->curlHandle, CURLOPT_POSTFIELDS, $data);
+        if(!empty($cookie)){
+            curl_setopt($ch,CURLOPT_COOKIE ,$cookie);
+        }
+        $this->setHeader();
+        $webInfo = curl_exec ( $ch );
+        if(curl_errno($ch))
+        {
+            $error = curl_error ($ch);
+            print_r($error);
+        }
+        curl_close($ch);
+        return $webInfo ;
+    }
+
+    /**
      * get获取Url内容
      * User: jsying@iflytek.com
      */
