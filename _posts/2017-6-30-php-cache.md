@@ -2,7 +2,7 @@
 layout: post
 title:  "php修改文件不能立即展示结果缓存去除"
 categories: PHP
-tags:  PHP Linux cache
+tags:  PHP Linux Cache
 ---
 
 * content
