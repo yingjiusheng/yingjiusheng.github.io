@@ -9,6 +9,7 @@ tags:  PHP
 {:toc}
 PHP的分享插件
 
+<!--excerpt-->
 ## 代码实现
 html：
 
