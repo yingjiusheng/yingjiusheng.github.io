@@ -1,8 +1,8 @@
 ---
 layout: post
 title:  "安装并使用 Laravel Passport 来请求授权令牌（OAuth2.0认证方式）"
-categories: PHP Laravel Oauth2.0
-tags:  PHP Laravel Oauth2.0
+categories: PHP Laravel OAuth2.0
+tags:  PHP Laravel OAuth2.0
 ---
 
 * content
