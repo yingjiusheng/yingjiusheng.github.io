@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Eclipse常用快捷键整理"
+title:  "Samba服务器的基本配置"
 categories: Linux
 tags:  Linux Samba
 ---
