@@ -244,9 +244,9 @@ public function run()
 
 数据库里会创建 admins 表，并且生成了3条数据
 
-### 4.创建后台页面
+#### 4.创建后台页面
 
-#### 1.创建控制器
+##### 1.创建控制器
 `php artisan make:controller Admin/LoginController`    
 `php artisan make:controller Admin/IndexController`
 其中， Admin/LoginController 负责登录逻辑； Admin/IndexController 管理登录后的首页
@@ -343,7 +343,7 @@ class IndexController extends Controller
 }
 ```
 
-#### 2.后台显示模板
+##### 2.后台显示模板
 
 复制 views/layouts/app.blade.php 成 views/layouts/admin.blade.php
 
@@ -527,7 +527,7 @@ class IndexController extends Controller
 @endsection
 ```
 
-#### 3.添加后台路由
+##### 3.添加后台路由
 编辑 routes/web.php， 添加以下内容
 
 ```
@@ -542,7 +542,7 @@ Route::group(['prefix' => 'admin'], function () {
 });
 ```
 
-#### 4.后台管理认证中间件
+##### 4.后台管理认证中间件
 创建后台管理认证中间件
 `php artisan make:middleware AuthAdmin`
 
@@ -603,7 +603,7 @@ public function handle($request, Closure $next)
 ```
 
 
-#### 5.处理注销
+##### 5.处理注销
 
 经过上面的步骤，已经实现了前后台分离登录，但是不管是在前台注销，还是在后台注销，都销毁了所有的 session，导致前后台注销连在一起。所以我们还要对注销的方法处理一下。
 
