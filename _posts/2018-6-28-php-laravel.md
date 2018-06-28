@@ -70,9 +70,14 @@ class AppServiceProvider extends ServiceProvider
     }
 }
 ```
+
 ### 3.前后台用户登录分离
+
 #### 1.修改 Auth 认证的配置文件 config/auth.php
+
 在 gurads 处，添加 admin guard 用于后台管理员认证
+
+
 ```
 'guards' => [
         'web' => [
@@ -598,7 +603,7 @@ public function handle($request, Closure $next)
 ```
 
 
-### 5.处理注销
+#### 5.处理注销
 
 经过上面的步骤，已经实现了前后台分离登录，但是不管是在前台注销，还是在后台注销，都销毁了所有的 session，导致前后台注销连在一起。所以我们还要对注销的方法处理一下。
 
