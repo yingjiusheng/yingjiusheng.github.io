@@ -191,3 +191,22 @@ public class IndexController {
     </root>
 </configuration>
 ```
+
+##  启动时个性化banner
+
+在resource下新增banner.txt文件
+
+[使用的banner图生成地址](http://www.network-science.de/ascii/)
+
+```java
+Application Name: ${app.name}
+Application Version: ${app.version}
+Spring Boot Version: ${spring-boot.version}
+
+ _______   _______ .___  ___.   ______    __
+|       \ |   ____||   \/   |  /  __  \  /_ |
+|  .--.  ||  |__   |  \  /  | |  |  |  |  | |
+|  |  |  ||   __|  |  |\/|  | |  |  |  |  | |
+|  '--'  ||  |____ |  |  |  | |  `--'  |  | |
+|_______/ |_______||__|  |__|  \______/   |_|
+```
