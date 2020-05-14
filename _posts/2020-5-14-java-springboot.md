@@ -1,7 +1,7 @@
 ---
 layout: post
-title:  "springBoot的学习（一）"
-categories: java springBoot
+title:  "SpringBoot的学习（一）"
+categories: java SpringBoot
 tags: java
 ---
 
@@ -11,23 +11,22 @@ tags: java
 
 <!--excerpt-->
 
-##  IDEA搭建springBoot框架
+##  IDEA搭建SpringBoot框架
 
 ###  仅安装web支持
 
-![构建1](../images/springboot/1.png)
+![构建1](https://yingjiusheng.github.io/images/springboot/1.png)
 
 ![构建2](../images/springboot/2.png)
 
-![构建3](../images/springboot/3.png)
+![构建3](https://yingjiusheng.github.io/images/springboot/3.png)
 
 ###  自动生成maven等依赖
 
-![构建4](../images/springboot/4.png)
+![构建4](https://yingjiusheng.github.io/images/springboot/4.png)
 
 ###  放入svn仓库
 
 ###  运行成功
 
-![构建5](../images/springboot/5.png)
-
+![构建5](https://yingjiusheng.github.io/images/springboot/5.png)
