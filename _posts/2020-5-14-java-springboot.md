@@ -210,3 +210,128 @@ Spring Boot Version: ${spring-boot.version}
 |  '--'  ||  |____ |  |  |  | |  `--'  |  | |
 |_______/ |_______||__|  |__|  \______/   |_|
 ```
+
+##  语言国际化
+
+### 编写国际化文件
+
+编写resource文件夹i18n内容
+
+![构建6](https://yingjiusheng.github.io/images/springboot/6.png)
+
+###  修改yaml文件资源配置
+
+```yaml
+spring:
+    # 国际化资源信息
+  messages:
+    basename: i18n/message
+```
+
+###  添加config文件
+
+```java
+package com.demo1.framework.config;
+
+import java.util.Locale;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.LocaleResolver;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
+import org.springframework.web.servlet.i18n.SessionLocaleResolver;
+
+/**
+ * 资源文件配置加载
+ *
+ */
+@Configuration
+public class I18nConfig implements WebMvcConfigurer
+{
+    @Bean
+    public LocaleResolver localeResolver()
+    {
+        SessionLocaleResolver slr = new SessionLocaleResolver();
+        // 默认语言
+        slr.setDefaultLocale(Locale.SIMPLIFIED_CHINESE);
+        return slr;
+    }
+
+    @Bean
+    public LocaleChangeInterceptor localeChangeInterceptor()
+    {
+        LocaleChangeInterceptor lci = new LocaleChangeInterceptor();
+        // 参数名
+        lci.setParamName("lang");
+        return lci;
+    }
+
+    @Override
+    public void addInterceptors(InterceptorRegistry registry)
+    {
+        registry.addInterceptor(localeChangeInterceptor());
+    }
+}
+```
+
+###  添加constant文件
+
+```java
+package com.demo1.common.constant;
+
+public class I18nConstant {
+
+    /**
+     * 一个例子
+     */
+    public static final String TEXT = "not.null";
+
+}
+```
+
+### 代码里使用
+
+```java
+package com.demo1.project.backend.controller;
+
+import com.demo1.common.constant.I18nConstant;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
+import org.springframework.context.i18n.LocaleContextHolder;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.Locale;
+
+@Controller
+@RequestMapping("/backend")
+public class IndexController {
+
+    @Autowired
+    private MessageSource messageSource;
+
+    /**
+     * 首页
+     */
+    @GetMapping("/index")
+    @ResponseBody
+    public String index() {
+        Locale locale = LocaleContextHolder.getLocale();
+        String msg = messageSource.getMessage(I18nConstant.TEXT, null, locale);
+        Logger logger = LoggerFactory.getLogger(getClass());
+        logger.info("这是国际化语言日志"+msg);
+        return "index";
+    }
+}
+```
+
+### 访问
+
+以浏览器语言为默认访问
+
+链接访问 ?lang=zh_CN或?lang=en_US
